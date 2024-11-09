@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Calibration Document Set</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Angsana new', sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+       .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+        }
+
+       .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+			font-size: 20px;
+        }
+
+
+        .logo-container {
+            display: flex;
+            gap: 10px;
+        }
+
+       .title {
+		   font-family: Angsana new, sans-serif;
+    		font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+}
+
+        .cert-number {
+			font-family: Angsana new, sans-serif;
+            font-size: 12px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+            .label {
+			font-family: Angsana new, sans-serif;
+            font-weight: bold;
+			font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 12px;
+        }
+
+        th, td {
+			font-family: Angsana new, sans-serif;
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #FCEEBE;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            padding: 3px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 12px;
+            width: calc(100% - 6px);
+        }
+
+        .reference-title {
+			font-family: Angsana new, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .section-header {
+            background-color: #f0f0f0;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .measure-unit {
+            font-size: 10px;
+            vertical-align: super;
+        }
+
+        .button-group {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            cursor: pointer;
+		}
+		.save3 {
+            background-color: #FA5557;
+        }        }
+
+        .add-button {
+            background-color: #6c757d; color: white;
+        }
+
+        .remove-button {
+            background-color: #dadce0;
+            color: #3c4043;
+        }
+
+        .calculate-button {
+            background-color: #34a853;
+            color: white;
+        }
+
+        .top-border {
+            height: 5px;
+            background-color: #4285f4;
+            margin-bottom: 20px;
+        }
+		.header2{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+       .pm-title {
+			font-family: Angsana new, sans-serif;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+		.selection {
+			font-size: 14px;
+            text-align: left;
+		}
+			.note, .footer {
+			font-family: Angsana new, sans-serif;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none;
+}
+            }
+
+			
+        }
+    </style>
+    <script>
+        function addRow() {
+            const table = document.getElementById("readingTable");
+            const newRow = table.insertRow(-1);
+
+            for (let i = 0; i < 6; i++) {
+                const cell = newRow.insertCell(i);
+                const input = document.createElement("input");
+                input.type = "number";
+                input.step = "0.01";
+                input.className = i === 0 ? "setting" : "reading";
+                cell.appendChild(input);
+            }
+        }
+
+        function removeRow() {
+            const table = document.getElementById("readingTable");
+            if (table.rows.length > 2) {
+                table.deleteRow(-1);
+            } else {
+                alert("Cannot remove the last row.");
+            }
+        }
+
+        function calculate() {
+            const readingTable = document.getElementById("readingTable");
+            const resultTable = document.querySelector(".section-title table tbody");
+            
+            // Clear existing rows in result table
+            while (resultTable.rows.length > 0) {
+                resultTable.deleteRow(0);
+            }
+            
+            // Process each row of readings
+            for (let i = 1; i < readingTable.rows.length; i++) {
+                const row = readingTable.rows[i];
+                const readings = [];
+                const settingValue = parseFloat(row.cells[0].querySelector('input').value);
+                
+                // Collect valid readings
+                for (let j = 1; j <= 5; j++) {
+                    const value = parseFloat(row.cells[j].querySelector('input').value);
+                    if (!isNaN(value)) {
+                        readings.push(value);
+                    }
+                }
+                
+                // Skip row if not enough valid readings
+                if (readings.length < 3) continue;
+                
+                // Calculate average of readings
+                const average = readings.reduce((a, b) => a + b, 0) / readings.length;
+                
+                // Calculate results
+                const standardReading = average;
+                const error = Number((standardReading - settingValue).toFixed(2));
+                const percentError = Number(((error / settingValue) * 100).toFixed(2));
+                const uncertainty = 0.6;
+                
+                // Create new row in result table
+                const resultRow = resultTable.insertRow(-1);
+                
+                // Add cells with calculated values
+                const values = [
+                    settingValue.toFixed(2),
+                    standardReading.toFixed(2),
+                    error.toFixed(2),
+                    percentError.toFixed(2),
+                    uncertainty.toFixed(2)
+                ];
+                
+                values.forEach(value => {
+                    const cell = resultRow.insertCell();
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.value = value;
+                    input.readOnly = true;
+                    cell.appendChild(input);
+                });
+            }
+            
+            alert("Calculation complete!");
+        }
+    </script>
+</head>
+<body>
+    <!-- Page 1: Certificate of Calibration -->
+    <div class="page">
+        <div class="header">
+            <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title">Certificate of Calibration</div>
+             <div class="header2">Certificate No. <input type="text" style="width: 100px">
+            <br>
+            Page <input type="number" value="1" style="width: 102px">
+        </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="label">CLIENT:</div>
+            <input type="text" name="client">
+            
+            <div class="label">LOCATION:</div>
+            <input type="text" name="location">
+            
+            <div class="label">DEPARTMENT:</div>
+            <input type="text" name="department">
+            
+            <div class="label">EQUIPMENT:</div>
+            <input type="text" name="equipName">
+            
+            <div class="label">ID NO.:</div>
+            <input type="text" name="equipId">
+            
+            <div class="label">MANUFACTURER:</div>
+            <input type="text" name="manufacturer">
+            
+            <div class="label">MODEL:</div>
+            <input type="text" name="model">
+            
+            <div class="label">SERIAL NO.:</div>
+            <input type="text" name="serialNo">
+            
+            <div class="label">CAL. DATE:</div>
+            <input type="date" name="calDate">
+            
+            <div class="label">DUE DATE:</div>
+            <input type="date" name="dueDate">
+        </div>
+		  <div class="label">ENVIRONMENT:</div>
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: left; margin-top: 10px;">
+            <div>
+                TEMPERATURE: <input type="number" step="0.1" style="width: 80px"> °C<br>
+                HUMIDITY: <input type="number" step="0.1" style="width: 80px"> %
+				<div class="button-container">
+        </div>
+        <div class="reference-title">REFERENCE STANDARD USED</div>
+        <table id="referenceTable">
+            <thead>
+                <tr>
+                    <th>ID. NO.</th>
+                    <th>TYPE/MANUFACTURER</th>
+                    <th>MODEL</th>
+                    <th>S/N</th>
+                    <th>CERT.NO.</th>
+                    <th>DUE DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="date"></td>
+                </tr>
+            </tbody>
+        </table>
+<script>
+  // Existing JavaScript code...
+
+  function saveData() {
+    // Get all input fields
+    const inputFields = document.querySelectorAll("input");
+    
+    // Create an object to store the data
+    const data = {};
+    
+    // Loop through the input fields and store the values
+    inputFields.forEach(field => {
+      data[field.name] = field.value;
+    });
+    
+    // Save the data (e.g. to a file, database, or server)
+    // You can use the 'data' object to save the information as needed
+    console.log("Saving data:", data);
+    
+    // You can also add a success message or perform other actions after saving
+    alert("Data saved successfully!");
+  }
+
+  // Existing JavaScript code...
+</script>
+<button class="save3" onclick="saveData()">Save</button>
+<button onclick="window.print()" class="print-button no-print">Print</button>
+
+               </div>
+            </div>
+        </div>
+    <!-- Page 2: Preventive Maintenance Report -->
+    <div class="page">
+        <div class="header">
+            <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+			
+			    <div class="pm-title">Preventive Maintenance Report</div>
+                <div class="header2">Certificate No. <input type="text" style="width: 100px">
+            <br>
+            Page <input type="number" value="2" style="width: 102px">
+        </div>
+        </div>
+        <table>
+            <tr>
+                <th>Pass</th>
+                <th>Fail</th>
+                <th>N/A</th>
+                <th>Check List</th>
+                <th>Comment</th>
+            </tr>
+            <!-- Visual Check Section -->
+            <tr>
+                <td colspan="5" class="section-header">1. Visual Check</td>
+            </tr>
+            <!-- All checkboxes and inputs from the original maintenance report -->
+            <tr>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td>1.1 External Condition</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.2 Mount</td>
+        <td><input type="text" style="width: 90%"></td>
+  </tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.3 Caster / Brakes</td>
+        <td><input type="text" style="width: 90%"></td>
+  </tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.4 Ac Plug</td>
+        <td><input type="text" style="width: 90%"></td>
+  </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.5 Line Cord</td>
+        <td><input type="text" style="width: 90%"></td>
+
+
+		</tr>
+    <tr>
+
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.6 Strain Reliefs / Housing</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.7 Circuit Braker/Fuse</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.8 Tube / Hoses</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.9 Cables</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.10 Fittings / Connectors</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.11 Electrodes / Transducers				
+</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.12 Filter</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.13 Controls/Switches</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.14 Heater</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.15 Motor / Pump / Fan / Compressor</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.16 Fluid Levels</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.17 Battery / Charger</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.18 Indicators / Display</td>
+        <td><input type="text" style="width: 90%"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.19 User Calibration / Self - Test</td>
+        <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+				<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.20 Alarms / Interlocks</td>
+        <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+				<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.21 Audible Signals</td>
+        <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+				<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.22 Labeling</td>
+        <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+				<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.23 Accessories</td>
+        <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+           <!-- Add all other electrical test items here -->
+
+            <!-- Quantitative Test Section -->
+            <tr><td colspan="5" class="section-header">2. Quantitative Test</td></tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">2.1 Grounding Resistance &lt; 0.5 Ohm</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">2.2 Leakage Current &lt; 500 uA</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+           <!-- Preventive Maintenance Section -->
+            <tr><td colspan="5" class="section-header">3. Preventive Maintenance</td></tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.1 Clean the exterior and accessories</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.2 Lubricate</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.3 Calibrate/adjust</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.4 Replace</td>
+                <td><input type="text" style="width: 90%"></td>
+            </tr>
+			</tr>
+        </table>
+
+        <div class="note">
+            Note:&nbsp;&nbsp;
+<input type="text" style="width: 85%">
+        </div>
+        <div class="footer">
+            P = Pass, F = Fail, N = None, N/A = Not Available
+        </div>
+</div>
+    <!-- Page 3: Infant Incubator Calculator -->
+    <div class="page">
+        <div class="header">
+			<br>
+           <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title">Certificate of Calibration</div>
+            <div class="header2">Certificate No. <input type="text" style="width: 100px">
+            <br>
+            Page <input type="number" value="3" style="width: 102px">
+        </div>
+        </div>
+
+    <script>
+        document.getElementById('addRowBtn')?.addEventListener('click', function() {
+            const tbody = document.querySelector('#referenceTable tbody');
+            const newRow = tbody.insertRow();
+            newRow.innerHTML = `
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="date"></td>
+            `;
+        });
+    </script>
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hood Temperature Accuracy Calibration</title>
+    <style>
+        @page {
+			font-family: Angsana new, sans-serif;
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        input[type="number"], 
+        input[type="text"] {
+            width: 90%;
+            padding: 5px;
+        }
+
+        .button-group {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            .no-print {
+                display: none;
+            }
+            .button-group {
+                display: none;
+            }
+        }
+
+        .readings-table {
+            margin-bottom: 30px;
+        }
+
+        .accuracy-table {
+            margin-top: 30px;
+        }
+
+        .table-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+        
+        
+	<div class="button-group">
+        <button onclick="addRow()">Add Row</button>
+        <button onclick="removeRow()">Remove Row</button>
+        <button onclick="calculate()" class="calculate-button">Calculate</button>
+        <button onclick="window.print()" class="print-button">Print</button>
+    </div>
+
+        <div class="readings-table">
+            <table id="readingTable">
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Reading 1</th>
+                        <th>Reading 2</th>
+                        <th>Reading 3</th>
+                        <th>Reading 4</th>
+                        <th>Reading 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" step="0.01" class="setting"></td>
+                        <td><input type="number" step="0.01" class="reading"></td>
+                        <td><input type="number" step="0.01" class="reading"></td>
+                        <td><input type="number" step="0.01" class="reading"></td>
+                        <td><input type="number" step="0.01" class="reading"></td>
+                        <td><input type="number" step="0.01" class="reading"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="accuracy-table">
+            <h2>Hood Temperature Accuracy</h2>
+            <table id="accuracyTable">
+                <thead>
+                    <tr>
+                        <th>UUT Setting °C</th>
+                        <th>Standard Reading °C</th>
+                        <th>Error °C</th>
+                        <th>% Error</th>
+                        <th>Uncertainty °C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+       <script>
+        function addRow() {
+            const table = document.getElementById("readingTable");
+            const newRow = table.insertRow(-1);
+
+            for (let i = 0; i < 6; i++) {
+                const cell = newRow.insertCell(i);
+                const input = document.createElement("input");
+                input.type = "number";
+                input.step = "0.01";
+                input.className = i === 0 ? "setting" : "reading";
+                cell.appendChild(input);
+            }
+        }
+
+        function removeRow() {
+            const table = document.getElementById("readingTable");
+            if (table.rows.length > 2) {
+                table.deleteRow(-1);
+            } else {
+                alert("Cannot remove the last row.");
+            }
+        }
+
+        function calculate() {
+            const readingTable = document.getElementById("readingTable");
+            const accuracyTable = document.getElementById("accuracyTable").getElementsByTagName('tbody')[0];
+            
+            // Clear existing rows in accuracy table
+            accuracyTable.innerHTML = '';
+            
+            // Process each row of readings
+            for (let i = 1; i < readingTable.rows.length; i++) {
+                const row = readingTable.rows[i];
+                const readings = [];
+                const settingValue = parseFloat(row.cells[0].querySelector('input').value);
+                
+                // Collect valid readings
+                for (let j = 1; j <= 5; j++) {
+                    const value = parseFloat(row.cells[j].querySelector('input').value);
+                    if (!isNaN(value)) {
+                        readings.push(value);
+                    }
+                }
+                
+                // Skip row if not enough valid readings
+                if (readings.length < 3) continue;
+                
+                // Calculate average of readings
+                const average = readings.reduce((a, b) => a + b, 0) / readings.length;
+                
+                // Calculate results
+                const standardReading = average;
+                const error = Number((standardReading - settingValue).toFixed(2));
+                const percentError = Number(((error / settingValue) * 100).toFixed(2));
+                const uncertainty = 0.6;
+                
+                // Create new row in accuracy table
+                const resultRow = accuracyTable.insertRow(-1);
+                
+                // Add cells with calculated values
+                [settingValue.toFixed(2), 
+                 standardReading.toFixed(2), 
+                 error.toFixed(2), 
+                 percentError.toFixed(2), 
+                 uncertainty.toFixed(2)
+                ].forEach(value => {
+                    const cell = resultRow.insertCell();
+                    cell.textContent = value;
+                });
+            }
+            
+            alert("Calculation complete!");
+        }
+    </script>
+</div>
+</body>
+</html>

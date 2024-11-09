@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Calibration</title>
+    <style>
+       	@page {
+    	size: A4 portrait;
+    	margin: 1cm;
+}
+
+		body {
+    	font-family: 'Angsana new', sans-serif;
+    	margin: 0;
+    	background-color: #f0f0f0;
+}
+
+		.page {
+    	width: 210mm;
+    	min-height: 297mm;
+    	padding: 20mm;
+    	background: white;
+    	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    	page-break-after: always;
+}
+
+		.page:last-child {
+    	page-break-after: avoid;
+}
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+        }
+		.container {
+            width: 800px;
+            margin: 0 auto;
+            border: 0px solid black;
+            padding: 0px;
+        }
+      .logo-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .title {
+			font-family: 'Angsana new', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+		.header2{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+
+        .cert-number1 {
+			font-family: 'Angsana new', sans-serif;
+            text-align: right;
+            font-size: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .label {
+			font-family: 'Angsana new', sans-serif;
+            font-weight: bold;
+			font-size: 20px;
+        }
+
+        input[type="text"], 
+        input[type="number"],
+        input[type="date"] {
+            width: 90%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .environment {
+            margin: 20px 0;
+        }
+
+        .environment-grid {
+			font-family: 'Angsana new', sans-serif;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .unit {
+            margin-left: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+			font-family: 'Angsana new', sans-serif;
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #FCEEBE;
+        }
+
+        .reference-title {
+			font-family: 'Angsana new', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+			font-size: 18px;
+        }
+
+        .traceable {
+			font-family: 'Angsana new', sans-serif;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+			font-size: 18px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            color: black;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .buttonAd {
+          background-color: #FF0004; /* Red background */
+          color: white; /* White text color */
+		}
+
+        #addRowPBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+ @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .button-container { display: none; }
+            input { border: none; }
+        }
+		 @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .certificate {
+                box-shadow: none;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .button-container {
+                display: none;
+            }
+            input {
+                border: none;
+            }
+        }
+		.top-border {
+            border-top: 2px solid #000;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+	  <!-- Page 2: Preventive Maintenance Report -->
+	<div class="page">
+    <form id="certificateForm">
+        <div class="certificate">
+            <div class="header">
+                   <div class="logo-container">
+                    <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+                </div>
+                <div class="title">Certificate of Calibration</div>
+                <div class="header2">Certificate No. <input type="text" style="width: 100px">
+            <br>
+            Page<input type="number" value="1" style="width: 102px">
+        </div>
+		</div>
+
+            <div class="info-grid">
+                <div class="label">CLIENT:</div>
+                <input type="text" name="client">
+                
+                <div class="label">LOCATION:</div>
+                <input type="text" name="location">
+                
+                <div class="label">DEPARTMENT:</div>
+                <input type="text" name="department">
+                
+                <div class="label">EQUIPMENT NAME:</div>
+                <input type="text" name="equipName">
+                
+                <div class="label">EQUIPMENT ID. NO.:</div>
+                <input type="text" name="equipId">
+                
+                <div class="label">MANUFACTURER:</div>
+                <input type="text" name="manufacturer">
+                
+                <div class="label">MODEL:</div>
+                <input type="text" name="model">
+                
+                <div class="label">SERIAL NO.:</div>
+                <input type="text" name="serialNo">
+                
+                <div class="label">DATE OF CALIBRATION:</div>
+                <input type="date" name="calDate">
+                
+                <div class="label">DUE DATE:</div>
+                <input type="date" name="dueDate">
+            </div>
+
+            <div class="environment">
+                <div class="label">ENVIRONMENT:</div>
+                <div class="environment-grid">
+                    <div>AMBIENT TEMPERATURE:</div>
+                    <div>
+                        <input type="number" name="temperature" step="0.1" style="width: 80px">
+                        <span class="unit">°C</span>
+                    </div>
+                    <div>RELATIVE HUMIDITY:</div>
+                    <div>
+                        <input type="number" name="humidity" step="0.1" style="width: 80px">
+                        <span class="unit">%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reference-title">REFERENCE STANDARD USED</div>
+
+            <table id="referenceTable">
+                <thead>
+                    <tr>
+                        <th>ID. NO.</th>
+                        <th>TYPE/MANUFACTURER</th>
+                        <th>MODEL</th>
+                        <th>S/N</th>
+                        <th>CERT.NO.</th>
+                        <th>DUE DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="refId[]"></td>
+                        <td><input type="text" name="refType[]"></td>
+                        <td><input type="text" name="refModel[]"></td>
+                        <td><input type="text" name="refSerial[]"></td>
+                        <td><input type="text" name="refCertNo[]"></td>
+                        <td><input type="date" name="refDueDate[]"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="button-container">
+				<button class="buttonAd" onclick="saveData()">Save</button>
+                <button type="button" id="addRowPBtn" class="btn">Print</button>
+            </div>
+
+            <div class="traceable">THIS CERTIFICATE IS TRACEABLE TO</div>
+            <div style="text-align: center;">
+                <input type="text" name="traceable">
+            </div>
+			</div>
+		</form>
+	<script>
+  // Existing JavaScript code...
+
+  function saveData() {
+    // Get all input fields
+    const inputFields = document.querySelectorAll("input");
+    
+    // Create an object to store the data
+    const data = {};
+    
+    // Loop through the input fields and store the values
+    inputFields.forEach(field => {
+      data[field.name] = field.value;
+    });
+    
+    // Save the data (e.g. to a file, database, or server)
+    // You can use the 'data' object to save the information as needed
+    console.log("Saving data:", data);
+    
+    // You can also add a success message or perform other actions after saving
+    alert("Data saved successfully!");
+  }
+
+  // Existing JavaScript code...
+</script>
+
+    <script>
+ const printButton = document.getElementById('addRowPBtn');
+        printButton.addEventListener('click', printCertificate);
+
+        function printCertificate() {
+            window.print();
+        }
+		
+    </script>
+	</div>
+</body>
+
+<!DOCTYPE html>
+<html lang="en"> 
+	<div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection Checklist</title>
+    <style>
+      @page {
+    size: A4 portrait;
+    margin: 1cm;
+}
+
+body {
+    font-family: 'Angsana new', sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+	.page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 10mm auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    page-break-after: always;
+}
+
+		.page:last-child {
+   		 page-break-after: avoid;
+}
+        .container {
+            width: 1000px;
+            margin: 10mm auto;
+            border: 0px solid black;
+            padding: 10px;
+        }
+        .title1 {
+			font-family: 'Angsana new', sans-serif;
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+       .logo-container2 {
+            display: flex;
+            gap: 10px;
+        }
+		.header4 {
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+ 			.pm-title {
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+         .sub-title {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        th, td {
+			font-family: 'Angsana new', sans-serif;
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .checkbox-column {
+            width: 30px;
+        }
+
+        .description-column {
+            width: 60%;
+        }
+		
+		.header3{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+        .comment-column {
+            width: 30%;
+        }
+
+        .section-header {
+            font-weight: bold;
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+
+        .selection {
+            text-align: left;
+			font-size: 14px;
+        }
+
+        .note, .footer {
+            padding: 20px;
+            font-size: 16px;
+            border-top: 0px solid black;
+            margin-top: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+        }
+
+        .note input[type="text"] {
+            width: 90%;
+        }
+		
+    </style>
+</head>
+<body>
+	<div class="page">
+        <div class="header">
+          <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title">Preventive Maintenance Report</div>
+            <div class="header4">Certificate No. <input type="text" style="width: 100px">
+                <br>
+                Page <input type="number" value="2" style="width: 105px">
+            </div>
+        </div>
+        <div class="sub-title">
+            Electrical Test (Master used. Electrical Safety Analyzer ESA620 according to IEC.60601.1)<br>
+            Test result: <input type="checkbox"> Pass <input type="checkbox"> Fail <input type="checkbox"> N/A
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="checkbox-column">P</th>
+                    <th class="checkbox-column">F</th>
+                    <th class="checkbox-column">N/A</th>
+                    <th class="description-column">Qualitative Test</th>
+                    <th class="comment-column">Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Section 1: Qualitative Tests -->
+                <tr><td colspan="5" class="section-header">1. Qualitative Tests</td></tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.1 Chassis / Housing</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.2 Mount</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.3 Caster / Brakes</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.4 AC Plug</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.5 Line Cord</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.6 Strain Reliefs</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.7 Circuit Breaker / Fuse</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.8 Tubes / Hoses</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.9 Cables</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.10 Fittings / Connectors</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.11 Transducers</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.12 Filters</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.13 Controls / Switches</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.14 Heater</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.15 Pump</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.16 Fluid Levels</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.17 Battery / Charger</td>
+
+
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.18 Indicators / Displays</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.19 User Calibration / Self-Test</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.20 Alarms</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.21 Audible Signals</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.22 Labeling</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.23 Accessories</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.24 Operation on Volunteer</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">1.25 Lead</td>
+                    <td></td>
+                </tr>
+
+                <!-- Section 2: Quantitative Test -->
+                <tr><td colspan="5" class="section-header">2. Quantitative Test</td></tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">2.1 Grounding Resistance &lt; 0.5 Ohm</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">2.2 Leakage Current &lt; 300 uA</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">2.3 Air Leakage &lt; 300 uA</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">2.4 Heart Rate &lt; 300 uA</td>
+                    <td></td>
+                </tr>
+
+                <!-- Section 3: Preventive Maintenance -->
+                <tr><td colspan="5" class="section-header">3. Preventive Maintenance</td></tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">3.1 Clean the exterior and accessories</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">3.2 Lubricate</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">3.3 Calibrate/adjust</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox"></td>
+                    <td class="selection">3.4 Replace</td>
+                    <td><input type="text" style="width: 90%;"></td>
+					<td></td>
+            </tr>
+			<tr>
+				</tr>
+        </tbody>
+		</table>
+        <div class="note">
+            Note:&nbsp;&nbsp;
+<input type="text" style="width: 85%">
+        </div>
+        <div class="footer">
+            P = Pass, F = Fail, N = None, N/A = Not Available
+        </div>
+    <script>
+        document.getElementById('addRowBtn').addEventListener('click', function() {
+            const tbody = document.querySelector('#referenceTable tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="date"></td>
+            `;
+            tbody.appendChild(newRow);
+        });
+    </script>
+</div>
+		<div class="page">
+        <div class="header">
+          <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title">Certificate of Calibration</div>
+            <div class="header4">Certificate No. <input type="text" style="width: 100px">
+                <br>
+                Page <input type="number" value="3" style="width: 105px">
+            </div>
+        </div>
+		<div class="measurement-section">
+            <h2>Systolic Pressure</h2>
+			<table id="systolic-table">
+                <tr><th>Unit</th><th>Standard</th><th>Read1</th><th>Read2</th><th>Read3</th><th>Read4</th><th>Read5</th></tr>
+                <tr><td>mmHg</td><td><input type="number" class="standard-input"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td></tr>
+            </table>
+        </div>
+            <div class="measurement-section">
+            <h2>Diastolic Pressure</h2>
+            <table id="diastolic-table">
+                <tr><th>Unit</th><th>Standard</th><th>Read1</th><th>Read2</th><th>Read3</th><th>Read4</th><th>Read5</th></tr>
+                <tr><td>mmHg</td><td><input type="number" class="standard-input"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td></tr>
+            </table>
+        </div>
+		<div class="measurement-section">
+            <h2>Heart Rate Accuracy</h2>
+            <table id="heart-rate-table"> 
+                <tr><th>Unit</th><th>Standard</th><th>Read1</th><th>Read2</th><th>Read3</th><th>Read4</th><th>Read5</th></tr>
+                <tr><td>BPM</td><td><input type="number" class="standard-input"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td></tr>
+            </table>
+        </div>
+<div class="measurement-section">
+            <h2>SpO2</h2>
+            <table id="spo2-table"> 
+                <tr><th>Unit</th><th>Standard</th><th>Read1</th><th>Read2</th><th>Read3</th><th>Read4</th><th>Read5</th></tr>
+                <tr><td>%</td><td><input type="number" class="standard-input"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td><td><input type="number" class="reading"></td></tr>
+            </table>
+        </div>
+		<button onclick="calculateAll()">Calculate All Uncertainties</button>
+   <div class="title">
+            <h2>Certificate of Calibration</h2>
+        </div>
+
+        <table class="result-table">
+            <caption>Systolic Pressure Accuracy</caption>
+            <tr><th>Standard Setting (mmHg)</th><th>UUC Reading (mmHg)</th><th>Error (mmHg)</th><th>% Error</th><th>Uncertainty (mmHg)</th></tr>
+            <tbody id="systolic-result"></tbody>
+        </table>
+
+        <table class="result-table">
+            <caption>Diastolic Pressure Accuracy</caption>
+            <tr><th>Standard Setting (mmHg)</th><th>UUC Reading (mmHg)</th><th>Error (mmHg)</th><th>% Error</th><th>Uncertainty (mmHg)</th></tr>
+            <tbody id="diastolic-result"></tbody>
+        </table>
+
+        <table class="result-table">
+            <caption>Heart Rate Accuracy</caption>
+            <tr><th>Standard Setting (BPM)</th><th>UUC Reading (BPM)</th><th>Error (BPM)</th><th>% Error</th><th>Uncertainty (BPM)</th></tr>
+            <tbody id="heart-rate-result"></tbody>
+        </table>
+
+        <table class="result-table">
+            <caption>SpO2</caption>
+            <tr><th>Standard Setting (%)</th><th>UUC Reading (%)</th><th>Error (%)</th><th>% Error</th><th>Uncertainty (%)</th></tr>
+            <tbody id="spo2-result"></tbody>
+        </table>
+
+          <script>
+        const SYSTOLIC_MATRIX = [0.5, 0.6, 0.7, 0.8, 0.9];
+        const DIASTOLIC_MATRIX = [0.4, 0.5, 0.6, 0.7, 0.8];
+        const HEART_RATE_MATRIX = [1.2, 1.1, 1.3, 1.0, 1.2];
+        const SPO2_MATRIX = [0.3, 0.4, 0.35, 0.32, 0.36];
+
+        function calculateAverage(readings) {
+            const validReadings = readings.filter(r => !isNaN(r) && r !== "");
+            const sum = validReadings.reduce((a, b) => a + parseFloat(b), 0);
+            return validReadings.length ? sum / validReadings.length : 0;
+        }
+
+        function calculateUncertainty(readings) {
+            const avg = calculateAverage(readings);
+            const squaredDiffs = readings.filter(r => !isNaN(r) && r !== "").map(r => Math.pow(r - avg, 2));
+            const variance = squaredDiffs.reduce((a, b) => a + b, 0) / (squaredDiffs.length || 1);
+            return Math.sqrt(variance);
+        }
+
+        function calculateSection(tableId, resultId, matrix) {
+            const table = document.getElementById(tableId);
+            const result = document.getElementById(resultId);
+            const standardInput = table.querySelector(".standard-input").value;
+            const readings = Array.from(table.querySelectorAll(".reading")).map(input => parseFloat(input.value));
+
+            const avgReading = calculateAverage(readings);
+            const error = avgReading - standardInput;
+            const percentError = (error / standardInput) * 100;
+            const uncertainty = calculateUncertainty(readings) + matrix.reduce((a, b) => a + b, 0) / matrix.length;
+
+            result.innerHTML = `
+                <tr>
+                    <td>${standardInput}</td>
+                    <td>${avgReading.toFixed(2)}</td>
+                    <td>${error.toFixed(2)}</td>
+                    <td>${percentError.toFixed(2)}%</td>
+                    <td>${uncertainty.toFixed(2)}</td>
+                </tr>
+            `;
+        }
+
+        function calculateAll() {
+            calculateSection("systolic-table", "systolic-result", SYSTOLIC_MATRIX);
+            calculateSection("diastolic-table", "diastolic-result", DIASTOLIC_MATRIX);
+            calculateSection("heart-rate-table", "heart-rate-result", HEART_RATE_MATRIX);
+            calculateSection("spo2-table", "spo2-result", SPO2_MATRIX);
+        }
+    </script>
+</div>
+</body>
+</div>
+</html>
+</html>

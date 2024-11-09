@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Calibration</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Angsana new', sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                background: none;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* First Page Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+			font-size: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .title1 {
+    		font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        	
+}
+		.cert-number1{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 5px;
+		}
+        .info-grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+			font-size: 20px;
+        }
+		label2{
+			 font-weight: bold;
+			font-size: 25px;
+		}
+        input[type="text"], 
+        input[type="number"],
+        input[type="date"] {
+            width: 90%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+		.header2{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+		}
+        /* Second Page Styles */
+        .pm-title {
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sub-title {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .section-header {
+            font-weight: bold;
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+
+        .selection {
+			font-size: 14px;
+            text-align: left;
+			
+        }
+		 .reference-title {
+			font-family: Angsana new, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .note, .footer {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+        }
+		  .buttonAd {
+          background-color: #FF0004; /* Red background */
+          color: white; /* White text color */
+          padding: 10px 20px; /* Add some padding */
+          border: none; /* Remove the button border */
+          border-radius: 4px; /* Add some rounded corners */
+          cursor: pointer; /* Change the cursor to a pointer on hover */
+        }
+
+        .buttonAd:hover {
+          background-color: #CC0000; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Certificate of Calibration -->
+    <div class="page">
+        <div class="header">
+          <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title1">Certificate of Calibration</div>
+            <div class="cert-number1">Certificate No. <input type="text" style="width: 100px">
+                <br>
+                Page <input type="number" value="1" style="width: 105px">
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="label">CLIENT:</div>
+            <input type="text">
+            
+            <div class="label">LOCATION:</div>
+            <input type="text">
+            
+            <div class="label">DEPARTMENT:</div>
+            <input type="text">
+            
+            <div class="label">EQUIPMENT NAME:</div>
+            <input type="text">
+            
+            <div class="label">EQUIPMENT ID. NO.:</div>
+            <input type="text">
+            
+            <div class="label">MANUFACTURER:</div>
+            <input type="text">
+            
+            <div class="label">MODEL:</div>
+            <input type="text">
+            
+            <div class="label">SERIAL NO.:</div>
+            <input type="text">
+            
+            <div class="label">DATE OF CALIBRATION:</div>
+            <input type="date">
+            
+            <div class="label">DUE DATE:</div>
+            <input type="date">
+        </div>
+
+        <div class="label">ENVIRONMENT:</div>
+        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: left; margin-top: 10px;">
+            <div>
+                AMBIENT TEMPERATURE : <input type="number" step="0.1" style="width: 80px"><span class="unit">°C</span><br>
+                RELATIVE HUMIDITY : <input type="number" step="0.1" style="width: 80px"><span class="unit">%</span>
+            </div>
+        </div>
+
+        <div class="reference-title" style="text-align: center; font-weight: bold; margin: 20px 0;">REFERENCE STANDARD USED</div>
+
+        <table id="referenceTable">
+            <thead>
+                <tr>
+                    <th>ID. NO.</th>
+                    <th>TYPE/MANUFACTURER</th>
+                    <th>MODEL</th>
+                    <th>S/N</th>
+                    <th>CERT.NO.</th>
+                    <th>DUE DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="date"></td>
+                </tr>
+            </tbody>
+        </table>
+ <script>
+  // Existing JavaScript code...
+
+  function saveData() {
+    // Get all input fields
+    const inputFields = document.querySelectorAll("input");
+    
+    // Create an object to store the data
+    const data = {};
+    
+    // Loop through the input fields and store the values
+    inputFields.forEach(field => {
+      data[field.name] = field.value;
+    });
+    
+    // Save the data (e.g. to a file, database, or server)
+    // You can use the 'data' object to save the information as needed
+    console.log("Saving data:", data);
+    
+    // You can also add a success message or perform other actions after saving
+    alert("Data saved successfully!");
+  }
+
+  // Existing JavaScript code...
+</script>
+<button class="buttonAd" onclick="saveData()">Save</button>
+        <div style="font-weight: bold; text-align: center; margin: 0px 0;">THIS CERTIFICATE IS TRACEABLE TO</div>
+        <div style="text-align: center;">
+            <input type="text">
+        <div>
+	</div>
+    </div>
+</div>
+</body>
+       <!-- Page 2: Preventive Maintenance Report -->
+     <div class="page">
+		 <div class="header">
+        <div class="logo-container">
+            <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+        </div>
+        <div class="pm-title">Preventive Maintenance Report</div>
+        <div class="header2">Certificate No. <input type="text" style="width: 100px">
+            <br>
+            Page <input type="number" value="2" style="width: 110px">
+        </div>
+		</div>
+         <div class="sub-title">
+            Electrical Test (Master used. Electrical Safety Analyzer ESA620 according to IEC.60601.1)<br>
+            Test result: <input type="checkbox"> Pass <input type="checkbox"> Fail <input type="checkbox"> N/A
+        </div>
+
+        <table>
+            <tr>
+                <th class="checkbox-column">P</th>
+                <th class="checkbox-column">F</th>
+                <th class="checkbox-column">N/A</th>
+                <th class="description-column">Qualitative Test</th>
+                <th class="comment-column">Comment</th>
+            </tr>
+
+            <!-- Electrical Test Section -->
+            <tr><td colspan="5" class="section-header">1.Qualitative Tests</td></tr>
+            <tr>
+                <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.1 Chassis / Housing</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.2 AC Plug</td>
+        <td><input type="text" style="width: 90%;"></td>
+  </tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.3 Line Cord</td>
+        <td><input type="text" style="width: 90%;"></td>
+  </tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.4 Strain Reliefs</td>
+        <td><input type="text" style="width: 90%;"></td>
+  </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.5 Cables</td>
+        <td><input type="text" style="width: 90%;"></td>
+
+		</tr>
+    <tr>
+
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.6 Connectors</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.7 Probes</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.8 Control/Switch</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.9 Battery/Charger</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.10Indicators/Displays</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.11 Self-Test Verification
+</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.12 Alarms</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.13 Labeling</td>
+        <td><input type="text" style="width: 90%;"></td>
+		</tr>
+    <tr>
+		<td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td class="selection">1.14 Acessories</td>
+        <td><input type="text" style="width: 90%;"></td>
+            </tr>
+            <tr>
+           <!-- Add all other electrical test items here -->
+
+            <!-- Quantitative Test Section -->
+            <tr><td colspan="5" class="section-header">2. Quantitative Test</td></tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">2.1 Grounding Resistance &lt; 0.5 Ohm</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">2.2 Leakage Current &lt; 500 uA</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+
+            <!-- Preventive Maintenance Section -->
+            <tr><td colspan="5" class="section-header">3. Preventive Maintenance</td></tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.1 Clean the exterior and accessories</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.2 Lubricate</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.3 Calibrate/adjust</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+            <tr>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="checkbox-column"><input type="checkbox"></td>
+                <td class="selection">3.4 Replace</td>
+                <td><input type="text" style="width: 90%;"></td>
+            </tr>
+			</tr>
+        </table>
+        <div class="note">
+            Note:&nbsp;&nbsp;
+<input type="text" style="width: 85%">
+        </div>
+        <div class="footer">
+            P = Pass, F = Fail, N = None, N/A = Not Available
+        </div>
+    <script>
+        document.getElementById('addRowBtn').addEventListener('click', function() {
+            const tbody = document.querySelector('#referenceTable tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="date"></td>
+            `;
+            tbody.appendChild(newRow);
+        });
+    </script>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page {
+			font-family: Angsana new, sans-serif;
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .certificate {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            .certificate {
+                padding: 20mm;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+            
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        .header5 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+			font-size: 20px;
+        }
+
+        .logo {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .title {
+            font-size: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cert-number2{
+			font-size: 15px;
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 5px;
+		}
+
+        .Temp-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 95%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ceddf2;
+        }
+
+        .measure-unit {
+            font-size: 10px;
+            vertical-align: super;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            text-align: center;
+            font-size: 12px;
+            border: none;
+            background: transparent;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 1px solid #000;
+            background: transparent;
+        }
+
+        .print-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .print-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .print-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+        <div class="header">
+          <div class="logo-container">
+                <img src="images\logo1.png" alt="Logo 1" width="80" height="80">
+                <img src="images\logo2.png" alt="Logo 2" width="80" height="80">
+            </div>
+            <div class="title">Certificate of Calibration</div>
+            <div class="cert-number2">Certificate No. <input type="text" style="width: 100px">
+                <br>
+                Page <input type="number" value="3" style="width: 105px">
+            </div>
+        </div>
+    <div class="Temp-title">Temperature Accuracy</div>
+    <table>
+        <tr>
+            <th>UUC* Setting<br><span class="measure-unit">°C</span></th>
+            <th>Reading1<br><span class="measure-unit">°C</span></th>
+            <th>Reading2<br><span class="measure-unit">°C</span></th>
+            <th>Reading3<br><span class="measure-unit">°C</span></th>
+            <th>Reading4<br><span class="measure-unit">°C</span></th>
+            <th>Reading5<br><span class="measure-unit">°C</span></th>
+            <th>Standard Reading<br><span class="measure-unit">°C</span></th>
+            <th>Error<br><span class="measure-unit">°C</span></th>
+            <th>% Error<br><span class="measure-unit">%</span></th>
+            <th>Uncertainty<br><span class="measure-unit">°C</span></th>
+        </tr>
+        <tr>
+            <td><input type="number" id="uuc1" step="0.01"></td>
+            <td><input type="number" id="r1_1" step="0.01" onchange="calculate(1)"></td>
+            <td><input type="number" id="r2_1" step="0.01" onchange="calculate(1)"></td>
+            <td><input type="number" id="r3_1" step="0.01" onchange="calculate(1)"></td>
+            <td><input type="number" id="r4_1" step="0.01" onchange="calculate(1)"></td>
+            <td><input type="number" id="r5_1" step="0.01" onchange="calculate(1)"></td>
+            <td><input type="number" id="std1" step="0.01" readonly></td>
+            <td><input type="number" id="err1" step="0.01" readonly></td>
+            <td><input type="number" id="perr1" step="0.01" readonly></td>
+            <td class="uncertainty-cell">
+                <span class="plus-minus">±</span>
+                <input type="number" id="unc1" step="0.01" readonly>
+            </td>
+        </tr>
+    </table>
+
+    <div class="print-button no-print">
+        <button onclick="printCertificate()" class="print-btn">Print</button>
+    </div>
+
+    <script>
+        function calculateStdev(arr) {
+            if (arr.length <= 1) return 0;
+            const mean = arr.reduce((a, b) => a + b) / arr.length;
+            const variance = arr.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / (arr.length - 1);
+            return Math.sqrt(variance);
+        }
+
+        function calculate(row) {
+            const uuc = parseFloat(document.getElementById(`uuc${row}`).value) || 0;
+            const r1 = parseFloat(document.getElementById(`r1_${row}`).value) || 0;
+            const r2 = parseFloat(document.getElementById(`r2_${row}`).value) || 0;
+            const r3 = parseFloat(document.getElementById(`r3_${row}`).value) || 0;
+            const r4 = parseFloat(document.getElementById(`r4_${row}`).value) || 0;
+            const r5 = parseFloat(document.getElementById(`r5_${row}`).value) || 0;
+
+            const readings = [r1, r2, r3, r4, r5].filter(r => !isNaN(r) && r !== 0);
+            
+            const mean = readings.reduce((a, b) => a + b, 0) / readings.length;
+            document.getElementById(`std${row}`).value = mean.toFixed(2);
+
+            const error = uuc - mean;
+            document.getElementById(`err${row}`).value = error.toFixed(2);
+
+            const perror = (error / uuc) * 100;
+            document.getElementById(`perr${row}`).value = perror.toFixed(2);
+
+            let u1 = readings.length > 1 
+                ? calculateStdev(readings) / Math.sqrt(readings.length)
+                : 0.1453;
+
+            const u2 = 0.0289;
+            const u3 = 0.0289;
+            const u4 = 0.0198;
+            const u5 = 0.2500;
+            const u6 = 0.0000;
+
+            const uc = Math.sqrt(
+                Math.pow(u1, 2) + 
+                Math.pow(u2, 2) + 
+                Math.pow(u3, 2) + 
+                Math.pow(u4, 2) + 
+                Math.pow(u5, 2) + 
+                Math.pow(u6, 2)
+            );
+
+            const expandedUncertainty = 2 * uc;
+            document.getElementById(`unc${row}`).value = expandedUncertainty.toFixed(4);
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+    </script>
+</div>
+</body>
+</html>
+</html>
